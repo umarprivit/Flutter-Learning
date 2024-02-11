@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
 class loginPage extends StatelessWidget {
-  const loginPage({super.key});
+ loginPage({super.key});
+
+final TextEditingController userName = TextEditingController();
+final TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +57,54 @@ class loginPage extends StatelessWidget {
                 ),
               ),
             ),
+
+            Container(//username text field
+              child: TextField(
+                controller: userName,
+                decoration: InputDecoration(border: OutlineInputBorder(),hintText: "Enter Your UserName"),
+                textAlign: TextAlign.center,
+              ),
+              padding: EdgeInsets.all(5),
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            ),
+            Container(//password field
+              child: TextField(
+                controller:password ,
+                obscureText: true,
+                decoration: InputDecoration(border: OutlineInputBorder(),hintText:"Enter your Password"),
+                textAlign: TextAlign.center,
+              ),
+              padding: EdgeInsets.all(5),
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            ),
+
+            ElevatedButton(
+                onPressed: () {
+                  print("pressed elevated button username=${userName.text} and password = ${password.text}");
+                },
+                child: Text(
+                    "Login")) //This is elevated button means it follows the primary theme colour and its like a squary button that a UI have
+
+            ,
+
+            Container(
+              child: TextButton(
+                  //This is a Textbutton means this display a text with no outlnes or colour its just display a text and that is clickable
+                  onPressed: () {
+                    print("clicked on link");
+                  },
+                  child: Text("Syed Umer ")),
+              margin: EdgeInsets.all(10),
+            ),
+
+            //This is a gesture detector widget which is used for detecting the gestures from smartphones it has many property but the gesture detector just detect it doesnot inform user or give any touching colour to the thing
+            // For that we have inkwell to inform user by giving a touch animation to the user and syntax or the widget is mentioned below the GestureDetector;
+
+            GestureDetector(
+              child: Text("This is for learning a gestures"),
+              onTap: () => print("tapped on the text"),
+            )
+            //InkWell(child: Text("This is for learning a gestures"),onTap: () => print("tapped on the text"),)
           ],
         ),
       ),

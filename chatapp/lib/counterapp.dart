@@ -44,7 +44,7 @@ class _counterappState extends State<counterapp> {  //This is the state class wh
         onPressed: () {
           countadd();
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add),// this is Icon widget which accepts the data for icon and the icon date is Icons.ANY any widget that is avaiable
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
