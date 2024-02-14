@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 
@@ -35,7 +37,7 @@ class  chatbubble extends StatelessWidget {
                             "$message", //this is one of the child which is text and it have some properties
                             style: TextStyle(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w200,
+                                fontWeight: FontWeight.w100,
                                 fontSize: 18),textAlign: TextAlign.end),
                       ],
                     ),
