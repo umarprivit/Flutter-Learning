@@ -16,6 +16,6 @@ class ChatApp extends StatelessWidget {
     return MaterialApp(
         theme: ThemeData(useMaterial3:false, primarySwatch: Colors.blue),// usematerial3 : false is done because if we use material 3 we cant chage teh whole theme for the app it is done for the compatablity or to apps look native 
         title: "ChatApp",
-        home: chatPage());
+        home: loginPage());
   }
 }

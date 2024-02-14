@@ -28,6 +28,7 @@ class chatbar extends StatelessWidget {
         //Text field for writing messages;
 
         Expanded(
+          
             //to not overflow the field or for the constraints from the outer field
             child: TextField(
                 keyboardType: TextInputType

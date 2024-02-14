@@ -5,21 +5,22 @@ import 'package:chatapp/MyWidgets/chatbubble.dart';
 import 'package:flutter/material.dart';
 
 class chatPage extends StatelessWidget {
-  const chatPage({super.key});
+   final username;
+   const chatPage({super.key,required this.username});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Syed Umer",
+          "Hey $username :)",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         ),
         backgroundColor: Colors.greenAccent,
         actions: [
           IconButton(
               onPressed: () {
-                print("logout");
+                Navigator.pop(context);   // This is a navigator which is used to change the pages in a application and the pages in flutter we call them routes so this is one of the way to do the navigation along the pages;
               },
               icon: Icon(Icons.logout))
         ],
