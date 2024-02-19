@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
-import 'dart:js';
+
 
 import 'package:chatapp/chatPage.dart';
 import 'package:flutter/material.dart';
@@ -24,11 +24,17 @@ class loginPage extends StatelessWidget {
       print(userName.text);
       print(password.text);
       print("Login Succesful");
-      Navigator.push(
+      Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => chatPage(key: key,username: userName.text,),
-        ),
+        '/chatpage',arguments:userName.text 
+        
+        
+        
+        
+        // MaterialPageRoute(
+        //   builder: (context) => chatPage(key: key,username: userName.text,),
+        // )
+        
       ); //This is push method for the navigation in which we push a page to display and that page is stored in a stack so that when we pop a page from our stack so it could be the last page we opened in this app so there it takes context and the other thing is route the route in which we passs the widget of material app and in that material app weh pass the builder key with a context and a method
 
     } else

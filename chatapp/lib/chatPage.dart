@@ -5,11 +5,11 @@ import 'package:chatapp/MyWidgets/chatbubble.dart';
 import 'package:flutter/material.dart';
 
 class chatPage extends StatelessWidget {
-   final username;
-   const chatPage({super.key,required this.username});
+  const chatPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final username = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -18,9 +18,11 @@ class chatPage extends StatelessWidget {
         ),
         backgroundColor: Colors.greenAccent,
         actions: [
+          // this is action which is use to add action in app bar like buttons and other functions ;
           IconButton(
               onPressed: () {
-                Navigator.pop(context);   // This is a navigator which is used to change the pages in a application and the pages in flutter we call them routes so this is one of the way to do the navigation along the pages;
+                Navigator.pushReplacementNamed(// to commpletely backtrack we used replacement named method so that the user cant go back we use this type of method where we dont want the user to go back every time;
+                    context,'/'); // This is a navigator which is used to change the pages in a application and the pages in flutter we call them routes so this is one of the way to do the navigation along the pages;
               },
               icon: Icon(Icons.logout))
         ],
@@ -32,9 +34,10 @@ class chatPage extends StatelessWidget {
             itemCount: 10,
             itemBuilder: (context, index) {
               return chatbubble(
-
-                   alignment: (index%2==0)?Alignment.centerLeft:Alignment.centerRight
-                  , message: "Hello");
+                  alignment: (index % 2 == 0)
+                      ? Alignment.centerLeft
+                      : Alignment.centerRight,
+                  message: "Hello");
             },
           )),
 
