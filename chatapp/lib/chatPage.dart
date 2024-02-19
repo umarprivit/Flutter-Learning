@@ -13,7 +13,7 @@ class chatPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Hey umer :)",
+          "Hey $username :)",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         ),
         backgroundColor: Colors.greenAccent,
