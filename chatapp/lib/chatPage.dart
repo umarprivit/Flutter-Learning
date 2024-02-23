@@ -2,18 +2,39 @@
 
 import 'package:chatapp/MyWidgets/chatbar.dart';
 import 'package:chatapp/MyWidgets/chatbubble.dart';
+import 'package:chatapp/models/chatMessageEntity.dart';
 import 'package:flutter/material.dart';
 
 class chatPage extends StatelessWidget {
-  const chatPage({super.key});
+  chatPage({super.key});
+
+  List<ChatMessageEntity> messages = [
+    ChatMessageEntity(
+        id: "1",
+        message: "FirstText",
+        timestamp: DateTime.now().millisecondsSinceEpoch,
+        author: Author(name: "Umer")),
+    ChatMessageEntity(
+        id: "2",
+        message: "SecondText",
+        timestamp: DateTime.now().millisecondsSinceEpoch,
+        author: Author(name: "Someone"),
+        imageUrl:
+            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+    ChatMessageEntity(
+        id: "3",
+        message: "ThirdText",
+        timestamp: DateTime.now().millisecondsSinceEpoch,
+        author: Author(name: "Umer"))
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final username = ModalRoute.of(context)!.settings.arguments as String;
+    final username = ModalRoute.of(context)!.settings.arguments as String ?? "Guest";
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Hey umer :)",
+          "Hey $username :)",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
         ),
         backgroundColor: Colors.greenAccent,
@@ -21,8 +42,10 @@ class chatPage extends StatelessWidget {
           // this is action which is use to add action in app bar like buttons and other functions ;
           IconButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(// to commpletely backtrack we used replacement named method so that the user cant go back we use this type of method where we dont want the user to go back every time;
-                    context,'/'); // This is a navigator which is used to change the pages in a application and the pages in flutter we call them routes so this is one of the way to do the navigation along the pages;
+                Navigator.pushReplacementNamed(
+                    // to commpletely backtrack we used replacement named method so that the user cant go back we use this type of method where we dont want the user to go back every time;
+                    context,
+                    '/'); // This is a navigator which is used to change the pages in a application and the pages in flutter we call them routes so this is one of the way to do the navigation along the pages;
               },
               icon: Icon(Icons.logout))
         ],
@@ -31,13 +54,13 @@ class chatPage extends StatelessWidget {
         children: [
           Expanded(
               child: ListView.builder(
-            itemCount: 10,
+            itemCount: messages.length,
             itemBuilder: (context, index) {
               return chatbubble(
-                  alignment: (index % 2 == 0)
-                      ? Alignment.centerLeft
-                      : Alignment.centerRight,
-                  message: "Hello");
+                  alignment: (messages[index].author.name == "Umer")
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  entity: messages[index]);
             },
           )),
 

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 
-
+import 'package:google_fonts/google_fonts.dart';
 import 'package:chatapp/chatPage.dart';
 import 'package:flutter/material.dart';
 
@@ -113,10 +113,16 @@ class loginPage extends StatelessWidget {
                         } else
                           return null;
                       },
+                      style: GoogleFonts.lato(
+                          textStyle: TextStyle(
+                              color: Colors.black,
+                              
+                              )),
                       controller: userName,
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: "Enter Your UserName"),
+                          hintText: "Enter your Username"
+                          ),
                       textAlign: TextAlign.center,
                     ),
                     padding: EdgeInsets.all(5),

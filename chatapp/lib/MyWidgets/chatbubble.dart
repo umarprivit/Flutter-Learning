@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:chatapp/models/chatMessageEntity.dart';
 import 'package:flutter/material.dart';
 
 
 class  chatbubble extends StatelessWidget {
   final Alignment alignment ;
-  final String message;
-  const chatbubble({super.key,required this.alignment,required this.message});
+  final ChatMessageEntity entity;
+  const chatbubble({super.key,required this.alignment,required this.entity});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +28,15 @@ class  chatbubble extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        if(entity.imageUrl!=null)
                         Image(
                           image: NetworkImage(
                               //it is the child which contains the image from network it also can obtain image from file or devices.
-                              'https://plus.unsplash.com/premium_photo-1680740103993-21639956f3f0?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+                              '${entity.imageUrl}'),
                           height: 300,
                         ),
                         Text(
-                            "$message", //this is one of the child which is text and it have some properties
+                            entity.message, //this is one of the child which is text and it have some properties
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w100,
