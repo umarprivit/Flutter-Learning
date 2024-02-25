@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last
 
 
+import 'package:chatapp/MyWidgets/InputTextField.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:chatapp/chatPage.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class loginPage extends StatelessWidget {
       print(userName.text);
       print(password.text);
       print("Login Succesful");
+      
       Navigator.pushReplacementNamed(
         context,
         '/chatpage',arguments:userName.text 
@@ -69,8 +71,8 @@ class loginPage extends StatelessWidget {
                     28), // this is the property of box decoration which works to smoothly circles the corners of the container
                 image: DecorationImage(
                     fit: BoxFit.fitHeight,
-                    image: NetworkImage(
-                        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')),
+                    image: AssetImage(
+                        "assets/login.png")), //this is the property of box decoration which works to set the image in the container
               ),
             )
             // here ends the icon container.
@@ -104,51 +106,15 @@ class loginPage extends StatelessWidget {
                 children: [
                   Container(
                     //username text field
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value != null &&
-                            value.isNotEmpty &&
-                            value.length < 5) {
-                          return "username must be greater than 5 characters";
-                        } else
-                          return null;
-                      },
-                      style: GoogleFonts.lato(
-                          textStyle: TextStyle(
-                              color: Colors.black,
-                              
-                              )),
-                      controller: userName,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "Enter your Username"
-                          ),
-                      textAlign: TextAlign.center,
-                    ),
+                    child: InputTextField(txtController: userName, obscureText: false, text: "Username"),
                     padding: EdgeInsets.all(5),
                     margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   ),
-                  SizedBox(
-                    height: 24,
-                  ),
+                  
                   //Password field
                   Container(
                     //password field
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value != null &&
-                            value.isNotEmpty &&
-                            value.length < 5) {
-                          return "password must be greater than 5 characters";
-                        }
-                      },
-                      controller: password,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: "Enter your Password"),
-                      textAlign: TextAlign.center,
-                    ),
+                    child: InputTextField(txtController: password, obscureText: true, text: "Password"),
                     padding: EdgeInsets.all(5),
                     margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   ),

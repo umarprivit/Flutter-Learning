@@ -1,36 +1,52 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'dart:convert';
+
 import 'package:chatapp/MyWidgets/chatbar.dart';
 import 'package:chatapp/MyWidgets/chatbubble.dart';
 import 'package:chatapp/models/chatMessageEntity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class chatPage extends StatelessWidget {
+class chatPage extends StatefulWidget {
   chatPage({super.key});
 
-  List<ChatMessageEntity> messages = [
-    ChatMessageEntity(
-        id: "1",
-        message: "FirstText",
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-        author: Author(name: "Umer")),
-    ChatMessageEntity(
-        id: "2",
-        message: "SecondText",
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-        author: Author(name: "Someone"),
-        imageUrl:
-            "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
-    ChatMessageEntity(
-        id: "3",
-        message: "ThirdText",
-        timestamp: DateTime.now().millisecondsSinceEpoch,
-        author: Author(name: "Umer"))
-  ];
+  @override
+  State<chatPage> createState() => _chatPageState();
+}
+
+class _chatPageState extends State<chatPage> {
+  @override
+  void initState() {
+    LoadMessages();
+    super.initState();
+  }
+
+  List<ChatMessageEntity> messages = [];
+
+  LoadMessages() async {
+    final response = await rootBundle.loadString(
+        "assets/mock_messages.json"); // This is used to get Strings from the assets file
+    final List<dynamic> decodedList = jsonDecode(response)
+        as List; // this is used to decode the json format to a list for the we used as keyword and choose the list to be dynamic so that it can me list of any type
+    List<ChatMessageEntity> message = decodedList.map((listItems) {
+      //There is used a method called .map which means from the decoded list it will find the map and iterate them
+      return ChatMessageEntity.fromJson(
+          listItems); //This is where we call the factory constructor
+    }).toList();
+    setState(() {
+     messages=message;  // We do it here because we want to set this state in the initialization process so we put the state and this is the final state 
+   });
+  }
+
+
+  
 
   @override
   Widget build(BuildContext context) {
-    final username = ModalRoute.of(context)!.settings.arguments as String ?? "Guest";
+    final username =
+        ModalRoute.of(context)!.settings.arguments as String ?? "Guest";
+   
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -57,7 +73,7 @@ class chatPage extends StatelessWidget {
             itemCount: messages.length,
             itemBuilder: (context, index) {
               return chatbubble(
-                  alignment: (messages[index].author.name == "Umer")
+                  alignment: (messages[index].author.name == "poojab26")
                       ? Alignment.centerRight
                       : Alignment.centerLeft,
                   entity: messages[index]);

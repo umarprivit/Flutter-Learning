@@ -15,10 +15,20 @@ class  chatbubble extends StatelessWidget {
                   alignment: alignment,
                   //Chat Bubble
                   child: Container(
+                    
                     // this is the container for the message which includes a column and the column have two children which contains a text and an image
                     padding: EdgeInsets.all(6),
                     margin: EdgeInsets.all(10),
                     decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 7,
+                          offset: Offset(0, 1), // changes position of shadow
+                        ),
+
+                      ],
                         color: Colors.blueAccent,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(14),
